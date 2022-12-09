@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", foo)
+	http.HandleFunc("/", mainHandler)
 	http.ListenAndServe(":8080", nil)
 }
 
@@ -20,7 +20,7 @@ func validateContentType(contentTypeHeader string) (valid bool, err error) {
 	}
 }
 
-func foo(w http.ResponseWriter, r *http.Request) {
+func mainHandler(w http.ResponseWriter, r *http.Request) {
 	contentTypeHeader := r.Header.Get("Content-Type")
 	valid, err := validateContentType(contentTypeHeader)
 	if err != nil {
